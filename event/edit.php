@@ -5,7 +5,7 @@ if (isset($_GET['id'])){
 	$url ='proses_edit';
 	$id = $_GET['id'];
 	//buat query untuk ambil data dari database
-	$sql ="SELECT * FROM daftar WHERE id = $id";
+	$sql ="SELECT * FROM daftar WHERE id_daftar = $id";
 	$query = mysqli_query ($koneksi,$sql);
 	$daftar = mysqli_fetch_array ($query);
 	//jika data yang diedit tidak ditemukan
@@ -20,12 +20,12 @@ if (isset($_GET['id'])){
 	}
 	?>
 	<html>
-	<head><title> Formulir daftar</title></head>
+	<head><title> Data Edit </title></head>
 	<body>
-	<header><h3> Formulir Daftar </h3></header>
-	<form action = "proses_pendaftaran.php" method = "POST">
+	<header><h3> Data Formulir Edit </h3></header>
+	<form action = "proses_edit.php" method = "POST">
 	<fieldset>
-	<legend><h2>Form Daftar </h2></legend>
+	<legend><h2>Data Formulir Edit </h2></legend>
 	<div>
 	<label for ='id'>Id: </label><br>
 	<input type ="text" name ="id" value =" <?php if (isset($_GET['id']))
@@ -37,16 +37,15 @@ if (isset($_GET['id'])){
 </div>
 <div>
 <label for ='email'>Email: </label><br>
-<textarea name ="email" row = "5"> <?php if (isset($_GET['id']))
+<textarea name ="alamat" row = "5"> <?php if (isset($_GET['id']))
 {echo $daftar['email'];} ?>	</textarea>
 </div>
 <div>
-<label for ='tanggal_lahir'>Tanggal lahir: </label><br>
-<input name = "tanggal_lahir" row="5" type ="Date"
-	<?php if (isset($_GET['id'])){echo$daftar['tanggal_lahir'];}?> />"
-</div>
+<label for ='tanggal_lahir'>Tanggal Lahir: </label><br>
+	<input type ="date" name ="tanggal_lahir" value ="<?php if (isset($_GET['id'])) 
+	{echo $daftar['tanggal_lahir'];}?>"/>
 <div>
-<label for = "alamat">Alamat: </label><br>
+<label for = "alamat">alamat: </label><br>
 <input type = "text" name ="alamat" value =" <?php if (isset($_GET['id']))
 	{echo $daftar['alamat'];} ?> "/>
 </div>
